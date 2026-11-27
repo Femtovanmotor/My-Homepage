@@ -68,6 +68,9 @@ layout: default
             {%- if page.codeurl -%}{% unless first %} | {% endunless %}<a href="{{ page.codeurl }}" target="_blank" rel="noopener">Code (GitHub)</a>{% assign first = false %}{%- endif -%}
           </p>
         {%- endif -%}
+        {%- if page.code_status -%}
+          <p style="font-size: smaller"><strong>Code open-sourcing:</strong> {{ page.code_status }}</p>
+        {%- endif -%}
 
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
@@ -97,9 +100,10 @@ layout: default
       {% endif %}
       <div class="grid__wrapper">
         {% for post in site.related_posts limit:4 %}
-          {% include archive-single.html type="grid" %}
+          {% include archive-single.html type="grid" %}  
         {% endfor %}
       </div>
     </div>
   {% endif %}
+
 </div>

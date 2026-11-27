@@ -22,7 +22,8 @@
           {% else %}
             "{{ teaser | prepend: "/images/" | prepend: base_path }}"
           {% endif %}
-          alt="">
+          alt=""
+        >
       </div>
     {% endif %}
 
@@ -49,11 +50,14 @@
     {% if post.excerpt and site.read_more != 'enabled' %}
     <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
     {% elsif post.excerpt and site.read_more == 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
+    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p>
     {% endif %}
     
     {% if post.citation %}
       <p>Recommended citation: {{ post.citation }}</p>
+    {% endif %}
+    {% if post.code_status %}
+      <p><strong>Code open-sourcing:</strong> {{ post.code_status }}</p>
     {% endif %}
     
     {% if post.paperurl or post.slidesurl or post.bibtexurl or post.codeurl %}
@@ -71,7 +75,7 @@
           {% if post.codeurl %} | {% endif %}
         {% endif %}
         {% if post.codeurl %}
-          <a href="{{ post.codeurl }}">GitHub</a>
+          <a href="{{ post.codeurl }}" target="_blank" rel="noopener">GitHub</a>
         {% endif %}
       </p>
     {% endif %}
